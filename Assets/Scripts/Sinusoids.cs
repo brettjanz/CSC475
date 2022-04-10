@@ -25,7 +25,7 @@ public static class Sinusoids
     public static AudioClip ToAudioClip(NDArray data, string name = "Sinusoid", float duration = 1f, float samplingRate = 44100f)
     {
         // Convert from NDArray to regular float[] array
-        float[] samples = data.ToArray<float>();
+        float[] samples = data.astype(NPTypeCode.Float).ToArray<float>();
 
         // Use Unity's AudioClip constructor
         AudioClip audioClip = AudioClip.Create(name, (int)(samplingRate * duration), 1, (int)samplingRate, false);

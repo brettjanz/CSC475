@@ -10,6 +10,10 @@ public class Game : MonoBehaviour
     public GameObject plot;
     private Plotter plotter;
 
+    // Audio
+    public GameObject audioObject;
+    private AudioController audioController;
+
     // Signal
     private List<Sinusoid> sinusoids;
     private NDArray signal;
@@ -20,6 +24,7 @@ public class Game : MonoBehaviour
     {
         sinusoids = new List<Sinusoid>();
         plotter = plot.GetComponent<Plotter>();
+        audioController = audioObject.GetComponent<AudioController>();
         AddSinusoid(new Sinusoid(1f, 440f));
     }
 
@@ -36,7 +41,13 @@ public class Game : MonoBehaviour
         updateSignal();
     }
 
-    public void updateSignal()
+    public void Button_AddSinusoid()
+    {
+        int n = sinusoids.Count;
+        AddSinusoid(new Sinusoid((1f/(n+1f)), 440f + (220f * n)));
+    }
+
+    private void updateSignal()
     {
         // Clear result down to zeros (Assuming length of all sinusoid arrays is 44100 samples)
         NDArray result = np.zeros(44100);
@@ -48,15 +59,14 @@ public class Game : MonoBehaviour
             result += temp;
         }
 
-        // Set
+        // Normalize to [-1, 1]
+        result = (2 * (result - np.min(result)) / (np.max(result) - np.min(result))) - 1;
+
+        // Set display
         plotter.data = result;
         plotter.time = time;
-    }
 
-    public void Button_AddSinusoid()
-    {
-        int n = sinusoids.Count;
-        AddSinusoid(new Sinusoid((1f/(n+1f)), 440f + (220f * n)));
+        // Set audio
+        audioController.updateAudio(result);
     }
-
 }
