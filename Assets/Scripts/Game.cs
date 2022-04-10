@@ -21,19 +21,18 @@ public class Game : MonoBehaviour
         sinusoids = new List<Sinusoid>();
         plotter = plot.GetComponent<Plotter>();
         AddSinusoid(new Sinusoid(1f, 440f));
-        plotter.data = signal;
-        plotter.time = time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void AddSinusoid(Sinusoid newSinusoid)
     {
         sinusoids.Add(newSinusoid);
+        Debug.Log("Added sinusoid: f=" + newSinusoid.Frequency + " A=" + newSinusoid.Amplitude);
         updateSignal();
     }
 
@@ -50,7 +49,14 @@ public class Game : MonoBehaviour
         }
 
         // Set
-        signal = result;
+        plotter.data = result;
+        plotter.time = time;
+    }
+
+    public void Button_AddSinusoid()
+    {
+        int n = sinusoids.Count;
+        AddSinusoid(new Sinusoid((1f/(n+1f)), 440f + (220f * n)));
     }
 
 }
