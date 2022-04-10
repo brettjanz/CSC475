@@ -202,6 +202,7 @@ GameObject:
   - component: {fileID: 730870490}
   - component: {fileID: 730870489}
   - component: {fileID: 730870492}
+  - component: {fileID: 730870493}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -293,12 +294,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730870487}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5da4a0eec6942044a2aa54152019765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resolution: 300
+--- !u!114 &730870493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730870487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0640d11aab7a347bf13008e8b87d7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlotExample: 0
+  DataPoints: 100
 --- !u!1 &827813634
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ public static class Sinusoids
 {
 
     // Creates a sinusoid and returns a numpy array containing the data
-    public static NDArray CreateSinusoid(float frequency = 440f, float duration = 1f, float samplingRate = 44100f, float amplitude = 1f, float phase = 0f)
+    public static NDArray CreateSinusoid(float frequency = 440f, float amplitude = 1f, float duration = 1f, float samplingRate = 44100f, float phase = 0f)
     {
         NDArray t = np.linspace(0, duration, (int)(samplingRate * duration));
         NDArray data = amplitude * np.sin(2 * np.pi * frequency * t + phase);
@@ -13,7 +13,7 @@ public static class Sinusoids
     }
 
     // Creates a sinusoid and returns a numpy array containing the data
-    public static NDArray CreateSinusoid(out NDArray time, float frequency = 440f, float duration = 1f, float samplingRate = 44100f, float amplitude = 1f, float phase = 0f)
+    public static NDArray CreateSinusoid(out NDArray time, float frequency = 440f, float amplitude = 1f, float duration = 1f, float samplingRate = 44100f, float phase = 0f)
     {
         NDArray t = np.linspace(0, duration, (int)(samplingRate * duration));
         time = t;

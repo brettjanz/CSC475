@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 509620216}
   - component: {fileID: 509620218}
   - component: {fileID: 509620215}
+  - component: {fileID: 509620219}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -327,13 +328,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 509620213}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb0640d11aab7a347bf13008e8b87d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PlotExample: 0
   DataPoints: 300
+--- !u!114 &509620219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509620213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5da4a0eec6942044a2aa54152019765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &693522858
 GameObject:
   m_ObjectHideFlags: 0
