@@ -9,8 +9,7 @@ public class AudioController : MonoBehaviour
     private AudioSource src;
     private AudioClip clip;
     
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         src = GetComponent<AudioSource>();
         src.loop = true;
@@ -19,7 +18,10 @@ public class AudioController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!src.isPlaying)
+        {
+            src.Play();
+        }
     }
 
     public void updateAudio(NDArray newSignal)

@@ -19,6 +19,11 @@ public class Plotter : MonoBehaviour
     private int indexEnd;
     private string slice;
 
+    private void Awake()
+    {
+        script = GetComponent<SimplestPlot>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +35,6 @@ public class Plotter : MonoBehaviour
         }
 
         // Display config
-        script = GetComponent<SimplestPlot>();
         script.ShowWarnings = true;
         script.SetResolution(new Vector2(600, 600));
         script.BackGroundColor = new Color(0.1f, 0.1f, 0.1f, 0.4f);

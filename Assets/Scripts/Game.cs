@@ -19,12 +19,16 @@ public class Game : MonoBehaviour
     private NDArray signal;
     private NDArray time;
 
+    private void Awake()
+    {
+        plotter = plot.GetComponent<Plotter>();
+        audioController = audioObject.GetComponent<AudioController>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         sinusoids = new List<Sinusoid>();
-        plotter = plot.GetComponent<Plotter>();
-        audioController = audioObject.GetComponent<AudioController>();
         AddSinusoid(new Sinusoid(1f, 440f));
     }
 
