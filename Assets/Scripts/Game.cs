@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using NumSharp;
+using TMPro;
 
 public class Game : MonoBehaviour
 {
@@ -16,8 +17,13 @@ public class Game : MonoBehaviour
 
     // Signal
     private List<Sinusoid> sinusoids;
-    private NDArray signal;
     private NDArray time;
+
+    // Incremental
+    private float cash;
+
+    // UI
+    public TextMeshProUGUI cashDisplay;
 
     private void Awake()
     {
@@ -28,6 +34,7 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cash = 0;
         sinusoids = new List<Sinusoid>();
         AddSinusoid(new Sinusoid(1f, 440f));
     }
@@ -35,7 +42,9 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        cash += calculateCashPerSecond() * Time.deltaTime;
 
+        updateDisplay();
     }
 
     public void AddSinusoid(Sinusoid newSinusoid)
@@ -48,7 +57,7 @@ public class Game : MonoBehaviour
     public void Button_AddSinusoid()
     {
         int n = sinusoids.Count;
-        AddSinusoid(new Sinusoid((1f/(n+1f)), 440f + (220f * n)));
+        AddSinusoid(new Sinusoid(1f, 440f + (220f * n)));
     }
 
     private void updateSignal()
@@ -72,5 +81,21 @@ public class Game : MonoBehaviour
 
         // Set audio
         audioController.updateAudio(result);
+    }
+
+    private float calculateCashPerSecond()
+    {
+        float result = 0;
+        foreach (Sinusoid s in sinusoids)
+        {
+            result += s.Frequency * s.Amplitude;
+        }
+
+        return result;
+    }
+
+    private void updateDisplay()
+    {
+        cashDisplay.text = "Cash: " + cash.ToString("G3");
     }
 }
